@@ -2,7 +2,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 import { BotNavBar } from "../components";
-import { Menu, Landing, Transaction } from "../pages";
+import { Menu, Transaction, Authenticating } from "../pages";
 import { persistor, store } from "../redux/store";
 import ProtectingRoute from "./protectingRoute";
 
@@ -15,7 +15,7 @@ const Routers = () => {
                         <Route
                             path="/"
                             element={
-                                <Landing />
+                                <Authenticating />
                             }
                         />
                         

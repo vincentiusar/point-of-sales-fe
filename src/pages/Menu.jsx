@@ -8,7 +8,7 @@ import { deleteOrder, saveOrder } from "../redux/sliceOrder";
 function Menu(props) {
     const user = useSelector((state) => state.user.users);
     const { restaurant, table_id } = useSelector((state) => state.transaction.transaction);
-    const { id: restaurant_id, name } = restaurant;
+    const { id: restaurant_id, name, images } = restaurant;
     const orders = useSelector((state) => state?.order?.orders);
 
     const dispatch = useDispatch();
@@ -97,7 +97,7 @@ function Menu(props) {
 
     return (
         <React.Fragment>
-            <SearchBar name={name} handleSearch={handleSearch} />
+            <SearchBar name={name} images={images} handleSearch={handleSearch} />
             <FoodCategory category={category} setCategory={setCategory} />
 
             <hr className="mx-4 my-2 bg-gray-500">
