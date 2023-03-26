@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Loading, TransactionDetail } from "../components";
+import { Loading, LoadingModal, TransactionDetail } from "../components";
 
 function Transaction(props) {
     const user = useSelector((state) => state.user.users);
@@ -39,23 +39,12 @@ function Transaction(props) {
 
     return (
         <React.Fragment>
-            <div className={`p-4 ${images ? 'text-white' : 'text-black'} bg-orange-100 h-auto`} style={images ? {background: `linear-gradient(rgb(0 0 0 / 0.5), rgb(0 0 0 / 0)), url(${images})`, backgroundSize: '30rem'} : null}>
+            <div className={`p-4 ${images ? 'text-white' : 'text-black'} bg-orange-100 h-auto`} style={images ? {background: `linear-gradient(rgb(0 0 0 / 0.5), rgb(0 0 0 / 0)), url(${images})`, backgroundSize: '100%', backgroundRepeat: "no-repeat"} : null}>
                 <p className="mt-5 mx-3 font-bold text-4xl break-words line-clamp-2">{name}</p>
                 <p className="mt-4 mx-3 font-semibold">Detail Transaksi</p>
             </div>
             {isLoading ? (
-                <div>
-                    <div className="fixed z-50 w-full p-4 overflow-x-hidden overflow-y-auto">
-                        <div className="relative w-full h-full max-w-2xl">
-                            <div className="relative bg-white rounded-lg shadow">
-                                <div className="flex flex-col items-center p-6 space-y-6">
-                                    <Loading /> 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="opacity-40 fixed inset-0 z-40 bg-black"></div>
-                </div>
+                <LoadingModal />
             ) : (
                 <TransactionDetail foods={foods} previousOrder={previousOrder} />
             )}

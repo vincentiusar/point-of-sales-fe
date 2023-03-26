@@ -30,7 +30,11 @@ function Authenticating(props) {
                 dispatch(
                     saveUser(
                         {
-                            token
+                            token,
+                            name: null,
+                            role_id: null,
+                            username: null,
+                            id: null,
                         }
                     )
                 );
@@ -45,7 +49,7 @@ function Authenticating(props) {
                 );
                 // console.log(res.data);
 
-                navigate(`/restaurant/${restaurant_id}/table/${table_id}/menu`);
+                navigate(`/customer/menu`);
             } catch (err) {
                 dispatch(deleteUser()); 
                 dispatch(deleteTransaction());

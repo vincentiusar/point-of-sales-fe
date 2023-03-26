@@ -110,6 +110,7 @@ function FoodList({ loadFood, food, order, setOrder }) {
 
     return (
         <React.Fragment>
+            {/* <p className="font-bold text-2xl col-span-4 mb-3 px-5"> Food </p> */}
             <div className="mt-4 mx-5 grid grid-cols-2 lg:grid-cols-6 md:grid-cols-4 gap-4">
                 {
                     loadFood ? 
@@ -123,9 +124,9 @@ function FoodList({ loadFood, food, order, setOrder }) {
                         <div className="max-w-sm rounded overflow-hidden shadow-lg active:shadow-lg active:shadow-blue-400" key={key} onClick={isModalOpen || item?.quantity === 0 ? null : (e) => handleOpenModal(e, item)}>
                             <img className="w-full" alt="a" src={gado} />
                             <div className="px-4 py-4 pb-5">
-                                <div className="font-bold text-xl mb-2 line-clamp-2">{item?.name}</div>
-                                <p className="text-gray-700 text-base line-clamp-1">{item?.description}</p>
                                 <p className="fond-semibold bg-orange-300 px-2 w-fit rounded-lg text-white text-base line-clamp-1">{Number(item?.price).toLocaleString("id-ID", { style: "currency", currency: "idr", })}</p>
+                                <p className="font-bold text-xl mb-2 line-clamp-1">{item?.name}</p>
+                                <p className="text-gray-700 text-base line-clamp-1">{item?.description}</p>
                             </div>
                             {foodQuantity.get(Number(item.id)) > 0 ? (
                                 <div className="px-6 pt-1">
@@ -151,34 +152,34 @@ function FoodList({ loadFood, food, order, setOrder }) {
                                 <div className="relative bg-white rounded-lg shadow">
                                     <div className="flex items-start justify-between p-4 border-b rounded-t">
                                         <h3 className="text-xl font-semibold text-gray-900">
-                                            Order?
+                                            Order
                                         </h3>
                                         <button type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" onClick={handleCancel}>
                                             <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"></path></svg>
                                             <span className="sr-only">Close modal</span>
                                         </button>
                                     </div>
-                                    <div className="flex flex-col items-center p-6 space-y-6">
-                                        <img className="w-full" alt="a" src={gado} />
-                                        <div className="flex flex-col items-center">
-                                            <p className="text-base leading-relaxed text-gray-500 font-bold">
+                                    <img className="w-full" alt="a" src={gado} />
+                                    <div className="px-6 pt-4 space-y-3">
+                                        <div className="flex flex-col">
+                                            <p className="fond-semibold bg-orange-300 px-7 w-fit text-center rounded-lg text-white text-base line-clamp-1">{Number(isModalOpen?.price).toLocaleString("id-ID", { style: "currency", currency: "idr", })}</p>
+                                            <p className="text-2xl leading-relaxed text-gray-500 font-bold">
                                                 {isModalOpen.name}
                                             </p>
-                                            <p className="text-base leading-relaxed text-gray-500 ">
+                                            <p className="text-base leading-relaxed text-gray-500">
                                                 {isModalOpen.description}
                                             </p>
-                                            <p className="fond-semibold bg-orange-300 px-2 w-full text-center rounded-lg text-white text-base line-clamp-1">{Number(isModalOpen?.price).toLocaleString("id-ID", { style: "currency", currency: "idr", })}</p>
+                                            <p className="text-sm">Tersisa: <span className="text-red-500">{isModalOpen.quantity}</span></p>
                                         </div>
-                                        <div className="flex gap-4 items-center">
-                                            <button className="rounded font-bold text-xl h-8 w-8 text-white bg-red-500" onClick={decrementQuantity}> - </button>
-                                            <input className="border border-black rounded w-14 text-center p-1" type="number" value={Number(quantity).toString()} min="1" max={isModalOpen.quantity} onChange={handleQuantity} />
-                                            <button className="rounded font-bold text-xl h-8 w-8 text-white bg-blue-500" onClick={(e) => incrementQuantity(e, isModalOpen)}> + </button>
-                                            <p>Max: {isModalOpen.quantity}</p>
+                                        <div className="flex flex-col items-end">
+                                            <div className="flex gap-4 items-center">
+                                                <button className="rounded font-bold text-xl h-8 w-8 text-orange-500 border-2 border-orange-500 bg-white" onClick={decrementQuantity}> - </button>
+                                                <input className="border border-black rounded w-14 text-center p-1" type="number" value={Number(quantity).toString()} min="1" max={isModalOpen.quantity} onChange={handleQuantity} />
+                                                <button className="rounded font-semibold text-xl h-8 w-8 text-white bg-orange-500" onClick={(e) => incrementQuantity(e, isModalOpen)}> + </button>
+                                            </div>
                                         </div>
-                                        <div className="flex gap-4 items-center my-2">
-                                            <p>Catatan</p>
-                                            <p>:</p>
-                                            <input className="rounded h-8 w-full mx-4 border border-black p-2" type="text" value={note} placeholder={`ex: Tanpa Daun Bawang`} onChange={handleNote} />
+                                        <div className="flex flex-col items-center my-2">
+                                            <input className="rounded h-12 w-full mx-4 border border-black p-2" type="text" value={note} placeholder={`Catatan: "Tanpa Daun Bawang"`} onChange={handleNote} />
                                         </div>
                                     </div>
                                     <div className="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b">

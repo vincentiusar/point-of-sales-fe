@@ -281,21 +281,20 @@ function TransactionDetail({foods, previousOrder}) {
                                 </div>
                                 <div className="flex flex-col items-center p-6 space-y-6">
                                     {editFood?.map((item, key) => (
-                                        <div key={key} className="flex flex-col items-center gap-3 border shadow rounded">
-                                            <div className="flex flex-col items-center p-3 space-y-6">
+                                        <div key={key} className="flex flex-col items-center gap-1 border shadow rounded">
+                                            <img className="w-full rounded-t" alt="a" src={gado} />
+                                            <div className="flex flex-col items-center p-3">
                                                 <div className="flex flex-col gap-3 items-center">
-                                                    <img className="w-11/12" alt="a" src={gado} />
-                                                    <p className="text-base leading-relaxed text-gray-500 font-bold">
+                                                    <p className="text-xl leading-relaxed text-gray-500 font-bold">
                                                         {item.name}
                                                     </p>
                                                     <div className="flex items-center gap-3">
-                                                        <button className="rounded font-bold text-xl h-8 w-8 text-white bg-red-500" onClick={() => decrementQuantity(editFood, key)}> - </button>
+                                                        <button className="rounded font-bold text-xl h-8 w-8 text-orange-500 border-2 border-orange-500 bg-white" onClick={() => decrementQuantity(editFood, key)}> - </button>
                                                         <input className="border border-black rounded w-14 text-center p-1" type="number" value={Number(editFood[key].quantity).toString()} min="1" max={item.food_quantity} onChange={(e) => handleQuantity(e, editFood, key)} />
-                                                        <button className="rounded font-bold text-xl h-8 w-8 text-white bg-blue-500" onClick={() => incrementQuantity(editFood, key)}> + </button>
+                                                        <button className="rounded font-semibold text-xl h-8 w-8 text-white bg-orange-500" onClick={() => incrementQuantity(editFood, key)}> + </button>
                                                     </div>
                                                     <div className="flex items-center gap-3">
-                                                        <p> Catatan: </p>
-                                                        <input type='text' className="w-28 py-1 px-2 border rounded border-black" value={editFood[key]?.note} onChange={(e) => { const note = e.target.value; const item = [...editFood]; item[key].note = note; setEditFood(item); }} />
+                                                        <input type='text' className="w-full h-12 py-1 px-2 border rounded border-black" placeholder={`Catatan: "Tanpa Daun Bawang"`} value={editFood[key]?.note} onChange={(e) => { const note = e.target.value; const item = [...editFood]; item[key].note = note; setEditFood(item); }} />
                                                     </div>
                                                 </div>
                                             </div>

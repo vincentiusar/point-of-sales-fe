@@ -4,7 +4,7 @@ function SearchBar(props) {
     
     return (
         <>
-            <div className={`p-4 pb-16 ${props.images ? 'text-white' : 'text-black'} bg-orange-100 h-auto`} style={props.images ? {background: `linear-gradient(rgb(0 0 0 / 0.5), rgb(0 0 0 / 0)), url(${props.images})`, backgroundSize: '30rem'} : null}>
+            <div className={`p-4 pb-16 ${props.images ? 'text-white' : 'text-black'} bg-orange-100 h-auto`} style={props.images ? {background: `linear-gradient(rgb(0 0 0 / 0.5), rgb(0 0 0 / 0)), url(${props.images})`, backgroundSize: '100%', backgroundRepeat: "no-repeat"} : null}>
                 <p className="mt-5 mx-3 font-bold text-4xl break-words line-clamp-2">{props.name}</p>
                 <p className="mt-4 mx-3 font-semibold">Mau Makan Apa Hari Ini?</p>
             </div>

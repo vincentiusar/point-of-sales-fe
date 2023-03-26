@@ -4,3 +4,6 @@ export { default as FoodList } from './FoodList';
 export { default as TransactionDetail } from './TransactionDetail';
 export { default as BotNavBar } from './BotNavBar';
 export { default as Loading } from './Loading';
+export { default as LoadingModal } from './LoadingModal';
+export { default as Login } from './Login';
+export { default as SideNavbar } from './SideNavbar';

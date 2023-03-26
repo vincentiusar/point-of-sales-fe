@@ -2,6 +2,11 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialValue = {
     token: null,
+    name: null,
+    role_id: null,
+    username: null,
+    id: null,
+    restaurant_id: null,
 }
 
 export const sliceUser = createSlice({

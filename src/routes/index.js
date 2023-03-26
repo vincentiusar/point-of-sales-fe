@@ -1,10 +1,13 @@
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
-import { BotNavBar } from "../components";
-import { Menu, Transaction, Authenticating, Landing } from "../pages";
+import { BotNavBar, SideNavbar } from "../components";
+import { Menu, Transaction, Authenticating, Landing, Dashboard, ChooseRestaurant, TableIndex } from "../pages";
 import { persistor, store } from "../redux/store";
 import ProtectingRoute from "./protectingRoute";
+import ProtectingStaffRoute from "./protectingStaffRoute";
+import AdminProtectingRoute from "./adminProtectingRoute";
+import { Layout } from "antd";
 
 const Routers = () => {
     return (
@@ -27,7 +30,7 @@ const Routers = () => {
                         />
                         
                         <Route
-                            path="/restaurant/:restaurant_id/table/:table_id/menu"
+                            path="/customer/menu"
                             element={
                                 <ProtectingRoute>
                                     <Menu />
@@ -37,7 +40,7 @@ const Routers = () => {
                         />
 
                         <Route
-                            path="/restaurant/:restaurant_id/table/:table_id/transaction"
+                            path="/customer/transaction"
                             element={
                                 <ProtectingRoute>
                                     <Transaction />
@@ -46,6 +49,46 @@ const Routers = () => {
                             }
                         />
                     
+                        <Route
+                            path="/restaurant"
+                            element={
+                                <AdminProtectingRoute>
+                                    <ChooseRestaurant />
+                                </AdminProtectingRoute>
+                            }
+                        />
+
+                        <Route
+                            path="restaurant/:id/dashboard"
+                            element={
+                                <ProtectingStaffRoute>
+                                    <Layout
+                                        style={{
+                                            minHeight: '100vh',
+                                        }}
+                                    >
+                                        <SideNavbar />
+                                        <Dashboard />
+                                    </Layout>
+                                </ProtectingStaffRoute>
+                            }
+                        />
+
+                        <Route
+                            path="restaurant/:id/table"
+                            element={
+                                <ProtectingStaffRoute>
+                                    <Layout
+                                        style={{
+                                            minHeight: '100vh',
+                                        }}
+                                    >
+                                        <SideNavbar />
+                                        <TableIndex />
+                                    </Layout>
+                                </ProtectingStaffRoute>
+                            }
+                        />
                     </Routes>
                 </Router>
             </PersistGate>
